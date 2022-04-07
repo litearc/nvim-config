@@ -32,7 +32,7 @@ o.setup_plug = function(c)
       indicator_selected    = {guifg = c.colors.b0, guibg = c.colors.b0, gui = 'none'},
       duplicate             = {guifg = c.colors.b3, guibg = c.colors.b1, gui = 'none'},
       duplicate_selected    = {guifg = c.colors.b5, guibg = c.colors.b0, gui = 'none'},
-      duplicate_visible     = {guifg = c.colors.b5, guibg = c.colors.b0, gui = 'none'},
+      duplicate_visible     = {guifg = c.colors.b3, guibg = c.colors.b0, gui = 'none'},
     }
   }
 end

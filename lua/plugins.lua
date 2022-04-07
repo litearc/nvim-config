@@ -145,6 +145,14 @@ return require'packer'.startup(
       end
     }
 
+    -- code formatter
+    use {
+      'sbdchd/neoformat',
+      config = function()
+        require'plug.neoformat'.setup()
+      end
+    }
+
     -- visual multiple-selection
     use {
       'mg979/vim-visual-multi',

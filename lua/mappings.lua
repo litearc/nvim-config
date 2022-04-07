@@ -212,8 +212,8 @@ map('n', lsp.goto_def, '<cmd>lua vim.lsp.buf.definition()<cr>')
 map('n', lsp.goto_decl, '<cmd>lua vim.lsp.buf.declaration()<cr>')
 map('n', lsp.goto_refs, '<cmd>lua vim.lsp.buf.references()<cr>')
 map('n', lsp.goto_impl, '<cmd>lua vim.lsp.buf.implementation()<cr>')
-map('n', lsp.show_line_diagnostics,  '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ show_header = false, border = "single" })<cr>')
+map('n', lsp.show_line_diagnostics,  '<cmd>lua vim.diagnostic.open_float(0, { scope = "line" })<cr>')
 
 -- automatically show line diagnostics. would like to have this, but a pain when
 -- switching panes and not having nvimtree open file in the popup pane
--- cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({ show_header = false, border = 'single' })]]
+-- cmd [[autocmd CursorHold * lua vim.diagnostic.show_line_diagnostics({ show_header = false, border = 'single' })]]

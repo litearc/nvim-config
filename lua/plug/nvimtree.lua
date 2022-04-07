@@ -16,8 +16,7 @@ o.setup = function()
       auto_open = false
     },
     hijack_cursor = true,
-    update_cwd = true,
-    hide_dotfiles = true,
+    update_cwd = false,
     ['git.ignore'] = true,
     tree_ignore = {'.git', 'node_modules', '.cache'},
     diagnostics = {
@@ -29,6 +28,9 @@ o.setup = function()
     },
     system_open = {
       cmd = nil
+    },
+    filters = {
+      dotfiles = true,
     },
     view = {
       width = 40,
@@ -52,12 +54,19 @@ o.setup = function()
           { key = m.dir_up                 , cb = cb('dir_up') }         ,
           { key = m.system_open            , cb = cb('system_open') }    ,
           { key = m.close                  , cb = cb('close') }          ,
-          { key = m.cd_to_reg              , cb = ':cd <c-r>*<cr>' }
         }
       }
     }
   }
 end
+
+-- _G.nvimtree_cd_to_file = function()
+--   -- local lib = require'nvim-tree.lib'
+--   -- local path = vim.fn.expand('%:p:h')
+--   -- lib.change_dir(path)
+--   -- return 'hl' -- hack to get it to update tree after cd
+--   return ''
+-- end
 
 o.maps = function()
   g.nvim_tree_indent_markers = 1
@@ -68,7 +77,7 @@ o.maps = function()
 
   g.nvim_tree_special_files = {}
   g.nvim_tree_window_picker_exclude = {
-    filetype = {'packer', 'qf', 'vista', 'Trouble'}
+    filetype = {'help', 'packer', 'qf', 'vista_kind', 'Trouble'}
   }
 
   g.nvim_tree_show_icons = {
@@ -78,6 +87,8 @@ o.maps = function()
   }
 
   map('n', m.toggle, ':NvimTreeToggle<cr>')
+  map('n', m.cd_to_file, ":lua require'nvim-tree.lib'.init(false, vim.fn.expand('%:p:h'))<cr>")
+  -- map('n', m.cd_to_file, ":lua require'nvim-tree.lib'.change_dir(vim.fn.expand('%:p:h'))<cr>")
 end
 
 return o

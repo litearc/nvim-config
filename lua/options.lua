@@ -60,8 +60,16 @@ o.shortmess:append('sI')
 o.fillchars = {eob = ' '}
 
 -- TODO: set lsp options + signs
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
+-- vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+--   vim.diagnostic.on_publish_diagnostics,
+--   {
+--     virtual_text = false,
+--     signs = true,
+--     underline = true,
+--   }
+-- )
+
+vim.diagnostic.config(
   {
     virtual_text = false,
     signs = true,
@@ -69,14 +77,14 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   }
 )
 
-vim.fn.sign_define('LspDiagnosticsSignError',
-  {text = '', texthl = 'LspDiagnosticsSignError'})
-vim.fn.sign_define('LspDiagnosticsSignWarning',
-  {text = '', texthl = 'LspDiagnosticsSignWarning'})
-vim.fn.sign_define('LspDiagnosticsSignHint',
-  {text = '', texthl = 'LspDiagnosticsSignHint'})
-vim.fn.sign_define('LspDiagnosticsSignInformation',
-  {text = '', texthl = 'LspDiagnosticsSignInformation'})
+vim.fn.sign_define('DiagnosticSignError',
+  {text = '', texthl = 'DiagnosticSignError'})
+vim.fn.sign_define('DiagnosticSignWarn',
+  {text = '', texthl = 'DiagnosticSignWarn'})
+vim.fn.sign_define('DiagnosticSignHint',
+  {text = '', texthl = 'DiagnosticSignHint'})
+vim.fn.sign_define('DiagnosticSignInfo',
+  {text = '', texthl = 'DiagnosticSignInfo'})
 
 -- TODO: get proper folding to work
 o.foldmethod = 'expr'
@@ -113,3 +121,7 @@ end
 -- https://stackoverflow.com/questions/4251533/vim-keep-window-position-when-switching-buffers
 cmd [[ au BufLeave * let b:winview = winsaveview() ]]
 cmd [[ au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif ]]
+
+-- disable line numbers in terminal:
+-- https://stackoverflow.com/questions/63906439/how-to-disable-line-numbers-in-neovim-terminal
+cmd [[ au TermOpen * setlocal nonumber norelativenumber ]]

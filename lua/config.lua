@@ -85,7 +85,7 @@ local o = {
     tags = '<leader>gt', -- similar to 'goto' for lsp
     altfile = '<leader>ga', -- e.g. switch bw header and impl
     cd_file = '<leader>cf',
-    copy_file_dir = '<leader>cd',
+    copy_file_dir = '<leader>yf',
   },
 
   -- (plugin options are found in the plugin files)
@@ -159,7 +159,7 @@ local o = {
       dir_up = 'u',
       system_open = 'o',
       close = 'q',
-      cd_to_reg = 'z',
+      cd_to_file = '<leader>cd', -- change tree root (when buffer (not tree) has focus)
     },
 
     -- move across arguments
