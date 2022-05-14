@@ -63,7 +63,7 @@ o.set_highlights = function()
   hi('SignColumn'   , 'b3'   , 'none')
   hi('StatusLine'   , 'b4'   , 'b1')
   hi('StatusLineNC' , 'b3'   , 'b1')
-  hi('VertSplit'    , 'b2'   , 'none')
+  hi('VertSplit'    , 'b7'   , 'b7') -- was (b2, none)
   hi('ColorColumn'  , 'none' , 'none')
   hi('CursorColumn' , 'none' , 'none')
   hi('CursorLine'   , 'none' , 'b1')
@@ -202,7 +202,7 @@ o.set_highlights = function()
 
   -- nvim-tree
   hi('NvimTreeNormal', 'b5', 'b7')
-  hi('NvimTreeVertSplit', 'b7', 'b7')
+  -- hi('NvimTreeVertSplit', 'b7', 'b7') -- doesn't work anymore...
   hi('NvimTreeCursorLine', 'none', 'b6')
   hi('NvimTreeStatusline', 'b7', 'b7')
   hi('NvimTreeStatuslineNC', 'b7', 'b7')
