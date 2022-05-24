@@ -1,20 +1,18 @@
-local map = require'util'.map
-local tog_comment = require'config'.pmap.tog_comment
-
+local map = require'core.util'.map
+local m = require'core.config'.pmap.comment
 local o = {}
 
-o.setup = function()
-  require'nvim_comment'.setup {
-    marker_padding = true,
-    comment_empty = true,
-    create_mappings = false,
-    hook = nil,
-  }
-end
-
-o.maps = function()
-  map('n', tog_comment, ':CommentToggle<cr>')
-  map('v', tog_comment, ':CommentToggle<cr>')
+o.config = function()
+	require'Comment'.setup {
+		toggler = {
+			line = m.tog_line,
+			block = m.tog_block,
+		},
+		opleader = {
+			line = m.line,
+			block = m.block,
+		}
+	}
 end
 
 return o

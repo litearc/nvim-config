@@ -1,48 +1,54 @@
-local lsp_installer = require("nvim-lsp-installer")
+local o = {}
 
-lsp_installer.on_server_ready(
-  function(server)
-    local opts = {}
+o.config = function()
+	local lsp_installer = require("nvim-lsp-installer")
 
-    -- c/c++
-    if server.name == 'clangd' then
-      opts = {
-        cmd = {'clangd', '--background-index'},
-        filetypes = {'c', 'cc', 'cpp', 'objc', 'objcpp'}
-      }
-    end
+	lsp_installer.on_server_ready(
+		function(server)
+			local opts = {}
 
-    -- java
-    if server.name == 'jdtls' then
-      opts = {}
-    end
+			-- c/c++
+			if server.name == 'clangd' then
+				opts = {
+					cmd = {'clangd', '--background-index'},
+					filetypes = {'c', 'cc', 'cpp', 'objc', 'objcpp'}
+				}
+			end
 
-    -- python
-    if server.name == 'pyright' then
-      opts = {
-        settings = {
-          python = {
-            analysis = {
-              autoSearchPaths = true,
-              typeCheckingMode = 'off'
-            },
-            pythonPath='python'
-          }
-        }
-      }
-    end
+			-- java
+			if server.name == 'jdtls' then
+				opts = {}
+			end
 
-    -- ruby
-    if server.name == 'solargraph' then
-      opts = {
-        settings = {
-          solargraph = {
-            diagnostics = true
-          }
-        }
-      }
-    end
+			-- python
+			if server.name == 'pyright' then
+				opts = {
+					settings = {
+						python = {
+							analysis = {
+								autoSearchPaths = true,
+								typeCheckingMode = 'off'
+							},
+							pythonPath='python'
+						}
+					}
+				}
+			end
 
-    server:setup(opts)
-  end
-)
+			-- ruby
+			if server.name == 'solargraph' then
+				opts = {
+					settings = {
+						solargraph = {
+							diagnostics = true
+						}
+					}
+				}
+			end
+
+			server:setup(opts)
+		end
+	)
+end
+
+return o

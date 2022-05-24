@@ -1,11 +1,7 @@
 -- (non-plugin) mappings
 
-local c = require'config'.map
-local lsp = require'config'.pmap.lsp
-local map = require'util'.map
-local o = vim.opt
-local cmd = vim.cmd
-local ev = vim.api.nvim_eval
+local c = require'core.config'.map
+local map = require'core.util'.map
 
 -- don't copy the replaced text after pasting in visual mode
 map('v', 'p', '"_dP', opt)
@@ -87,16 +83,17 @@ map('n', c.jump_next, '<c-i>zz')
 map('n', c.tog_search_hl, ':set hlsearch!<cr>')
 map('n', c.tog_line_nums, ':set number!<cr>')
 map('n', c.tog_paste, ':set paste!<cr>')
+--]]
 
 -- search word under cursor. if already being searched, toggle highlight.
 _G.search_highlight_toggle = function()
-  if ev'@/' == ev[['\<'.expand('<cword>').'\>']] then
-    cmd 'set hlsearch!'
-  else
-    cmd [[let @/ = '\<'.expand('<cword>').'\>']]
-    cmd 'set hlsearch'
-  end
-  return ''
+	if eval'@/' == eval[['\<'.expand('<cword>').'\>']] then
+		cmd 'set hlsearch!'
+	else
+		cmd [[let @/ = '\<'.expand('<cword>').'\>']]
+		cmd 'set hlsearch'
+	end
+	return ''
 end
 map('n', c.search_hl_tog, 'v:lua.search_highlight_toggle()', {expr = true})
 
@@ -158,12 +155,6 @@ map('n', c.quit, ':qa!', {silent = false})
 -- close buffer
 map('n', c.close_buf, ':bp|bd! #<cr>')
 
--- close current pane
--- _G.close_pane = function()
---   return ''
--- end
--- map('n', c.close_pane, 'v:lua.close_pane()', {expr = true})
-
 -- easily move to next/prev pane
 map('n', '<tab>', '<c-w>w')
 map('n', '<s-tab>', '<c-w><s-w>')
@@ -180,7 +171,7 @@ map('n', c.disp_fpath, ":echo expand('%')<cr>")
 map('n', c.disp_cwd, ':pwd<cr>')
 
 -- cd to current directory
-map('n', c.cd_file, ":cd %:p:h<cr>") -- add lua require'nvim-tree'.buf_enter() to update filetree
+map('n', c.cd_file, ":cd %:p:h<cr>")
 
 -- copy file directory to register
 map('n', c.copy_file_dir, ":let @*=expand('%:p:h')<cr>")
@@ -208,12 +199,18 @@ map('', '<leader>' .. c.copy_to_line_end, '"+y$')
 map('', '<leader>p', '"+p')
 
 -- lsp
-map('n', lsp.goto_def, '<cmd>lua vim.lsp.buf.definition()<cr>')
-map('n', lsp.goto_decl, '<cmd>lua vim.lsp.buf.declaration()<cr>')
-map('n', lsp.goto_refs, '<cmd>lua vim.lsp.buf.references()<cr>')
-map('n', lsp.goto_impl, '<cmd>lua vim.lsp.buf.implementation()<cr>')
-map('n', lsp.show_line_diagnostics,  '<cmd>lua vim.diagnostic.open_float(0, { scope = "line" })<cr>')
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+	vim.lsp.handlers.hover,
+	{ border = 'single' }
+)
 
--- automatically show line diagnostics. would like to have this, but a pain when
--- switching panes and not having nvimtree open file in the popup pane
--- cmd [[autocmd CursorHold * lua vim.diagnostic.show_line_diagnostics({ show_header = false, border = 'single' })]]
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+	vim.lsp.handlers.signature_help,
+	{ border = 'single' }
+)
+
+map('n', c.goto_def, '<cmd>lua vim.lsp.buf.definition()<cr>')
+map('n', c.goto_decl, '<cmd>lua vim.lsp.buf.declaration()<cr>')
+map('n', c.goto_refs, '<cmd>lua vim.lsp.buf.references()<cr>')
+map('n', c.goto_impl, '<cmd>lua vim.lsp.buf.implementation()<cr>')
+map('n', c.show_line_diagnostics, '<cmd>lua vim.diagnostic.open_float(0, { scope = "line", border = "single" })<cr>')
