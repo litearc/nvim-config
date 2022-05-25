@@ -45,6 +45,11 @@ end
 o.config = function()
 	local cmp = require'cmp'
 	cmp.setup {
+		snippet = {
+			expand = function(args)
+				vim.fn["vsnip#anonymous"](args.body)
+			end,
+		},
 		formatting = {
 			format = function(_, item)
 				item.kind = string.format("%s %s", icons[item.kind], item.kind)
@@ -61,6 +66,7 @@ o.config = function()
 		},
    sources = {
       { name = 'nvim_lsp' },
+			{ name = 'vsnip' },
    },
 	}
 end

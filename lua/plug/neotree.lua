@@ -18,7 +18,7 @@ o.config = function()
 				folder_empty = '',
 			},
 			modified = {
-				symbol = '✚',
+				symbol = '●',
 			},
 			git_status = {
 				symbols = {
