@@ -2,7 +2,20 @@ local o = {}
 
 o.config = function()
 	local base, colors = require('core.colors').colors(vim.g.colors_name)
-	local plain = { fg = base['3'], bg = base['1'] }
+	local theme = {
+		fg = base['3'],
+		bg = base['1'],
+		black = base['0'],
+		blue = colors.blue,
+		green = colors.green,
+		magenta = colors.magenta,
+		orange = colors.orange,
+		yellow = colors.yellow,
+		red = colors.red,
+		cyan = colors.cyan,
+	}
+
+	local plain = { fg = 'fg', bg = 'bg' }
 	local sep1 = { str = ' '   , hl = plain }
 	local sep2 = { str = '  '  , hl = plain }
 	local sep3 = { str = '   ' , hl = plain }
@@ -10,26 +23,26 @@ o.config = function()
 	local sepcomp2 = { provider = '  ' , hl = plain }
 
 	local mode_info = {
-		['n'] = { 'NORMAL', colors.blue },
-		['no'] = { 'N-PENDING', colors.blue },
-		['i'] = { 'INSERT', colors.green },
-		['ic'] = { 'INSERT', colors.green },
-		['t'] = { 'TERMINAL', colors.green },
-		['v'] = { 'VISUAL', colors.magenta },
-		['V'] = { 'V-LINE', colors.magenta },
-		[''] = { 'V-BLOCK', colors.magenta },
-		['R'] = { 'REPLACE', colors.orange },
-		['Rv'] = { 'V-REPLACE', colors.orange },
-		['s'] = { 'SELECT', colors.yellow },
-		['S'] = { 'S-LINE', colors.yellow },
-		[''] = { 'S-BLOCK', colors.yellow },
-		['c'] = { 'COMMAND', colors.red },
-		['cv'] = { 'COMMAND', colors.red },
-		['ce'] = { 'COMMAND', colors.red },
-		['r'] = { 'PROMPT', colors.cyan },
-		['rm'] = { 'MORE', colors.cyan },
-		['r?'] = { 'CONFIRM', colors.cyan },
-		['!'] = { 'SHELL', colors.green },
+		['n'] =  { 'NORMAL'    , 'blue'		 } ,
+		['no'] = { 'N-PENDING' , 'blue'		 } ,
+		['i'] =  { 'INSERT'    , 'green'	 } ,
+		['ic'] = { 'INSERT'    , 'green'	 } ,
+		['t'] =  { 'TERMINAL'  , 'green'	 } ,
+		['v'] =  { 'VISUAL'    , 'magenta' } ,
+		['V'] =  { 'V-LINE'    , 'magenta' } ,
+		[''] = { 'V-BLOCK'   , 'magenta' } ,
+		['R'] =  { 'REPLACE'   , 'orange'	 } ,
+		['Rv'] = { 'V-REPLACE' , 'orange'	 } ,
+		['s'] =  { 'SELECT'    , 'yellow'	 } ,
+		['S'] =  { 'S-LINE'    , 'yellow'	 } ,
+		[''] = { 'S-BLOCK'   , 'yellow'	 } ,
+		['c'] =  { 'COMMAND'   , 'red'		 } ,
+		['cv'] = { 'COMMAND'   , 'red'		 } ,
+		['ce'] = { 'COMMAND'   , 'red'		 } ,
+		['r'] =  { 'PROMPT'    , 'cyan'		 } ,
+		['rm'] = { 'MORE'      , 'cyan'		 } ,
+		['r?'] = { 'CONFIRM'   , 'cyan'		 } ,
+		['!'] =  { 'SHELL'     , 'green'	 } ,
 	}
 
 	local c = {
@@ -42,7 +55,7 @@ o.config = function()
 	local left_sec = {
 		{
 			provider = '    ',
-			hl = { fg = base['0'], bg = colors.blue },
+			hl = { fg = 'black', bg = 'blue' },
 		},
 		sepcomp2,
 		{
@@ -86,13 +99,13 @@ o.config = function()
 		},
 		{
 			provider = 'diagnostic_errors',
-			hl = { fg = colors.red, bg = base['1'] },
+			hl = { fg = 'red', bg = 'bg' },
 			icon = ' ',
 			right_sep = sep1,
 		},
 		{
 			provider = 'diagnostic_warnings',
-			hl = { fg = colors.yellow, bg = base['1'] },
+			hl = { fg = 'yellow', bg = 'bg' },
 			icon = ' ',
 			right_sep = sep1,
 		},
@@ -149,7 +162,7 @@ o.config = function()
 				return ' ' .. mode_info[fn.mode()][1] .. ' '
 			end,
 			hl = function()
-				return { fg = base['0'], bg = mode_info[fn.mode()][2] }
+				return { fg = 'black', bg = mode_info[fn.mode()][2] }
 			end,
 			left_sep = sep2,
 		}
@@ -161,6 +174,7 @@ o.config = function()
 	require'feline'.setup {
 		components = c
 	}
+	require'feline'.use_theme(theme)
 end
 
 return o

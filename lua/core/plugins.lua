@@ -6,6 +6,7 @@ return require('packer').startup(
 		use { 'kyazdani42/nvim-web-devicons' }
 		use { 'nvim-lua/plenary.nvim' }
 		use { 'MunifTanjim/nui.nvim' }
+    use { 'godlygeek/tabular' }
 
     use {
 			'nvim-treesitter/nvim-treesitter',

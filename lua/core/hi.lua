@@ -486,6 +486,23 @@ o.colorscheme = function(name, bg)
 	if ok then
 		hi(base, 'CmpBorder', '1', 'none')
 	end
+
+	local ok, feline = pcall(require, 'plug.feline')
+	if ok then
+		local theme = {
+			fg = base['3'],
+			bg = base['1'],
+			black = base['0'],
+			blue = colors.blue,
+			green = colors.green,
+			magenta = colors.magenta,
+			orange = colors.orange,
+			yellow = colors.yellow,
+			red = colors.red,
+			cyan = colors.cyan,
+		}
+		require'feline'.use_theme(theme)
+	end
 end
 
 return o
