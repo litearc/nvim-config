@@ -11,6 +11,13 @@ o.config = function()
 					padding = 1
 				}
 			},
+			custom_filter = function(buf, buf_nums)
+				local ftype = vim.bo[buf].filetype
+				local fname = vim.api.nvim_buf_get_name(buf)
+				if ftype == 'help' or ftype == 'qf' then return false end
+				if fname:find('fugitive://', 1, true) == 1 then return false end
+				return true
+			end
 		},
 	}
 

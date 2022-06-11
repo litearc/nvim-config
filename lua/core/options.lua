@@ -15,7 +15,7 @@ o.signcolumn = 'yes'
 o.backspace = {'indent', 'eol', 'start'}
 
 g.compatible = false
-o.mouse = 'r'
+o.mouse = 'a'
 o.clipboard = c.clipboard
 o.wrap = c.wrap
 o.whichwrap:append('<>hl[]')
@@ -50,7 +50,7 @@ g.t_co = 256
 g.termguicolors = true
 g.encoding = 'UTF-8'
 g.mapleader = c.leader
-g.python3_host_prog = 'python' -- can be a path
+g.python3_host_prog = 'python3' -- can be a path
 
 -- disable nvim intro
 o.shortmess:append('sI')
@@ -137,3 +137,5 @@ vim.api.nvim_create_autocmd('TermOpen', {
 		vim.opt_local.relativenumber = false
 	end
 })
+
+g.vimspector_enable_mappings = 'HUMAN' -- TODO: delete me

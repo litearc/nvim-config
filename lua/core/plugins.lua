@@ -96,5 +96,14 @@ return require('packer').startup(
 			end
 		}
 
+		use { 'tpope/vim-fugitive' }
+
+		use {
+			'mfussenegger/nvim-dap',
+			config = function()
+				require'plug.dap'.config()
+			end
+		}
+
 	end
 )

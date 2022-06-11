@@ -8,7 +8,7 @@ local colors = {}
 -- '4'	: dark fg (for status bar), cursor line num
 -- '5'	: default foreground, caret, delimiters, operators
 -- '6'	: light fg (not often used) (here, used for sidebar cursorline)
--- '7'	: light bg (not often used) (here, used for sidebar background)
+-- '7'	: dark bg (not often used) (here, used for sidebar background)
 -- '8'	: variables, xml tags, markup link text, markup lists, diff deleted
 -- '9'	: integers, boolean, constants, xml attributes, markup link url
 -- '10'	: classes, markup bold, search text background
@@ -57,9 +57,9 @@ colors['gruvbox'] = function()
 		['0']  = '#282828',
 		['1']  = '#3c3836',
 		['2']  = '#504945',
-		['3']  = '#665c54',
+		['3']  = '#8b7d73',
 		['4']  = '#bdae93',
-		['5']  = '#d5c4a1',
+		['5']  = '#ded1b5',
 		['6']  = '#3a3634',
 		['7']  = '#242424',
 		['8']  = '#fb4934',
@@ -88,14 +88,14 @@ end
 
 colors['onedark'] = function()
 	local base = {
-		['0']   = '#282c34',
-		['1']   = '#353b45',
-		['2']   = '#3e4451',
-		['3']   = '#545862',
-		['4']   = '#565c64',
-		['5']   = '#abb2bf',
-		['6']   = '#313741',
-		['7']   = '#242830',
+		['0']	  = '#282c34',
+		['1']	  = '#2e323b',
+		['2']	  = '#424855',
+		['3']	  = '#7a8499',
+		['4']	  = '#8e97a8',
+		['5']	  = '#d5d8de',
+		['6']	  = '#2e323b',
+		['7']	  = '#252930',
 		['8']   = '#e06c75',
 		['9']   = '#d19a66',
 		['10']  = '#e5c07b',
