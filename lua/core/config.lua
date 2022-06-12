@@ -45,6 +45,8 @@ local o = {
     big_word_next = 'M',
     word_prev = 'n',
     big_word_prev = 'N',
+		tab_prev = '<a-h>',
+		tab_next = '<a-l>',
     quickfix_prev = '<a-o>',
     quickfix_next = '<a-p>',
       -- https://stackoverflow.com/questions/11198382/
@@ -99,6 +101,14 @@ local o = {
       move_prev = '<a-n>',
       move_next = '<a-m>',
     },
+
+		diffview = {
+			open = '<leader>vc',
+			prompt = '<leader>vo',
+			close = '<leader>vq',
+			prev = '<a-o>',
+			next = '<a-p>',
+		},
 
 		comment = {
 			tog_line = '<leader>//',

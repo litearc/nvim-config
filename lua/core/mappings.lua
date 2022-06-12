@@ -193,6 +193,10 @@ map('', c.word_next, 'w')
 map('', c.big_word_prev, 'B')
 map('', c.big_word_next, 'W')
 
+-- prev/next tab
+map('n', c.tab_prev, ':tabp<cr>')
+map('n', c.tab_next, ':tabn<cr>')
+
 -- system clipboard (use * instead of + below for vim clipboard)
 map('', '<leader>y', '"+y')
 map('', '<leader>' .. c.copy_to_line_end, '"+y$')

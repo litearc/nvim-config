@@ -110,6 +110,9 @@ o.colorscheme = function(name, bg)
 	hi(base, 'DiffDelete', '10', '1')
 	hi(base, 'DiffText', '14', '1')
 	hi(base, 'NormalFloat', '3', 'none')
+	hi(base, 'diffAdded', '11', 'none')
+	hi(base, 'diffChanged', '13', 'none')
+	hi(base, 'diffRemoved', '8', 'none')
 
 	-- lsp
 	hi(base, 'DiagnosticError', '5', 'none')
@@ -213,8 +216,8 @@ o.colorscheme = function(name, bg)
 		hi(base, 'BufferLineSeparatorSelected'	,	'1', '1')
 		hi(base, 'BufferLineSeparatorVisible'		,	'1', '1')
 		hi(base, 'BufferLineTabClose'						,	'5', '1')
-		hi(base, 'BufferLineTab'								,	'5', '1')
-		hi(base, 'BufferLineTabSelected'				,	'5', '0')
+		hi(base, 'BufferLineTab'								,	'3', '1')
+		hi(base, 'BufferLineTabSelected'				,	'5', '1')
 		hi(base, 'BufferLineBackground'					,	'3', '1')
 		hi(base, 'BufferLineFill'								,	'1', '1')
 		hi(base, 'BufferLineIndicatorSelected'	,	'0', '0')
@@ -527,6 +530,13 @@ o.colorscheme = function(name, bg)
 			cyan = colors.cyan,
 		}
 		require'feline'.use_theme(theme)
+	end
+
+	local ok = pcall(require, 'plug.diffview')
+	if ok then
+		hi(base, 'DiffviewNormal', '5', '7')
+		hi(base, 'DiffviewWinSeparator', '7', '7')
+		hi(base, 'DiffviewFolderSign', '13', 'none')
 	end
 end
 

@@ -9,6 +9,10 @@ o.config = function()
 				{
 					filetype = 'neo-tree',
 					padding = 1
+				},
+				{
+					filetype = 'DiffviewFiles',
+					padding = 1
 				}
 			},
 			custom_filter = function(buf, buf_nums)

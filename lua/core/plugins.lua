@@ -105,5 +105,12 @@ return require('packer').startup(
 			end
 		}
 
+		use {
+			'sindrets/diffview.nvim',
+			config = function()
+				require'plug.diffview'.config()
+			end
+		}
+
 	end
 )
