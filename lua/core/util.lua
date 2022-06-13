@@ -37,4 +37,11 @@ o.is_lsp_active_name = function(name)
   return false
 end
 
+o.read_file = function(file)
+	local f = assert(io.open(file, "rb"))
+	local content = f:read("*all")
+	f:close()
+	return content
+end
+
 return o
