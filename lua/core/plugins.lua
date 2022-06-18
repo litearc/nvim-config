@@ -1,20 +1,26 @@
 return require('packer').startup(
 	function (use)
 
+		-- some of these plugins like 'nvim-web-devicons' and 'plenary' are used by
+		-- various plugins, so we just put them at the top instead of declaring them
+		-- as dependencies for each plugin that uses them.
 		use { 'wbthomason/packer.nvim' }
 		use { 'antoinemadec/FixCursorHold.nvim' }
 		use { 'kyazdani42/nvim-web-devicons' }
 		use { 'nvim-lua/plenary.nvim' }
 		use { 'MunifTanjim/nui.nvim' }
-    use { 'godlygeek/tabular' }
+		use { 'godlygeek/tabular' }
+		use { 'tpope/vim-fugitive' }
 
-    use {
+		-- better syntax highlighting (has other uses too)
+		use {
 			'nvim-treesitter/nvim-treesitter',
 			config = function()
 				require 'plug.treesitter'.config()
 			end
 		}
 
+		-- shows signs next to lines added, changes, or deleted in git repos
 		use {
 			'lewis6991/gitsigns.nvim',
 			config = function()
@@ -22,6 +28,7 @@ return require('packer').startup(
 			end,
 		}
 
+		-- very useful tool for searching through stuff
 		use {
 			'nvim-telescope/telescope.nvim',
 			config = function()
@@ -29,6 +36,7 @@ return require('packer').startup(
 			end,
 		}
 
+		-- nice floating terminal
 		use {
 			'voldikss/vim-floaterm',
 			config = function()
@@ -36,6 +44,7 @@ return require('packer').startup(
 			end,
 		}
 
+		-- shows tabs for open buffers
 		use {
 			'akinsho/bufferline.nvim',
 			tag = "v2.*",
@@ -45,6 +54,7 @@ return require('packer').startup(
 			end,
 		}
 
+		-- easily comment/uncomment lines
 		use {
 			'numToStr/Comment.nvim',
 			config = function()
@@ -52,6 +62,7 @@ return require('packer').startup(
 			end,
 		}
 
+		-- cool statusline plugin
 		use {
 			'feline-nvim/feline.nvim',
 			config = function()
@@ -59,6 +70,7 @@ return require('packer').startup(
 			end,
 		}
 
+		-- sidebar treeview
 		vim.g.neo_tree_remove_legacy_commands = 1
 		use {
 			'nvim-neo-tree/neo-tree.nvim',
@@ -68,6 +80,8 @@ return require('packer').startup(
 			end
 		}
 
+		-- easily install lsp servers (ideally this shouldn't be done through nvim,
+		-- but it's really convenient)
 		use {
 			'williamboman/nvim-lsp-installer',
 			requires = { 'neovim/nvim-lspconfig' },
@@ -76,6 +90,7 @@ return require('packer').startup(
 			end
 		}
 
+		-- nice lsp symbols in completion menus
 		use {
 			'onsails/lspkind-nvim',
 			config = function()
@@ -83,6 +98,7 @@ return require('packer').startup(
 			end
 		}
 
+		-- completion for lsp (also other stuff like snippets)
 		use { 'hrsh7th/cmp-nvim-lsp' }
 		use { 'hrsh7th/cmp-buffer' }
 		use { 'hrsh7th/cmp-path' }
@@ -96,8 +112,7 @@ return require('packer').startup(
 			end
 		}
 
-		use { 'tpope/vim-fugitive' }
-
+		-- debug adapter protocol to debug code
 		use {
 			'mfussenegger/nvim-dap',
 			config = function()
@@ -105,10 +120,19 @@ return require('packer').startup(
 			end
 		}
 
+		-- browse through code differences between commits, really useful
 		use {
 			'sindrets/diffview.nvim',
 			config = function()
 				require'plug.diffview'.config()
+			end
+		}
+
+		-- like ranger, but purely in nvim
+		use {
+			'tamago324/lir.nvim',
+			config = function()
+				require'plug.lir'.config()
 			end
 		}
 

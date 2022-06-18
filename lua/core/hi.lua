@@ -204,26 +204,26 @@ o.colorscheme = function(name, bg)
 	-- bufferline
 	local ok, _ = pcall(require, 'bufferline')
 	if ok then
-		hi(base, 'BufferLineBufferSelected'			,	'5', '0')
-		hi(base, 'BufferLineBufferVisible'			,	'3', '0')
-		hi(base, 'BufferLineCloseButton'				,	'3', '1')
-		hi(base, 'BufferLineCloseButtonSelected',	'5', '0')
-		hi(base, 'BufferLineCloseButtonVisible'	,	'5', '0')
-		hi(base, 'BufferLineModified'						,	'13', '1')
-		hi(base, 'BufferLineModifiedSelected'		,	'13', '0')
-		hi(base, 'BufferLineModifiedVisible'		,	'13', '0')
-		hi(base, 'BufferLineSeparator'					,	'1', '1')
-		hi(base, 'BufferLineSeparatorSelected'	,	'1', '1')
-		hi(base, 'BufferLineSeparatorVisible'		,	'1', '1')
-		hi(base, 'BufferLineTabClose'						,	'5', '1')
-		hi(base, 'BufferLineTab'								,	'3', '1')
-		hi(base, 'BufferLineTabSelected'				,	'5', '1')
-		hi(base, 'BufferLineBackground'					,	'3', '1')
-		hi(base, 'BufferLineFill'								,	'1', '1')
-		hi(base, 'BufferLineIndicatorSelected'	,	'0', '0')
-		hi(base, 'BufferLineDuplicate'					,	'3', '1')
-		hi(base, 'BufferLineDuplicateSelected'	,	'5', '0')
-		hi(base, 'BufferLineDuplicateVisible'		,	'3', '0')
+		hi(base, 'BufferLineBufferSelected'     , '5' , '0')
+		hi(base, 'BufferLineBufferVisible'      , '3' , '0')
+		hi(base, 'BufferLineCloseButton'        , '3' , '1')
+		hi(base, 'BufferLineCloseButtonSelected', '5' , '0')
+		hi(base, 'BufferLineCloseButtonVisible' , '5' , '0')
+		hi(base, 'BufferLineModified'           , '13', '1')
+		hi(base, 'BufferLineModifiedSelected'   , '13', '0')
+		hi(base, 'BufferLineModifiedVisible'    , '13', '0')
+		hi(base, 'BufferLineSeparator'          , '1' , '1')
+		hi(base, 'BufferLineSeparatorSelected'  , '1' , '1')
+		hi(base, 'BufferLineSeparatorVisible'   , '1' , '1')
+		hi(base, 'BufferLineTabClose'           , '5' , '1')
+		hi(base, 'BufferLineTab'                , '3' , '1')
+		hi(base, 'BufferLineTabSelected'        , '5' , '1')
+		hi(base, 'BufferLineBackground'         , '3' , '1')
+		hi(base, 'BufferLineFill'               , '1' , '1')
+		hi(base, 'BufferLineIndicatorSelected'  , '0' , '0')
+		hi(base, 'BufferLineDuplicate'          , '3' , '1')
+		hi(base, 'BufferLineDuplicateSelected'  , '5' , '0')
+		hi(base, 'BufferLineDuplicateVisible'   , '3' , '0')
 	end
 
 	-- devicons
@@ -454,6 +454,21 @@ o.colorscheme = function(name, bg)
 		link('GitSignsAddLn'    , 'GitSignsAdd')
 		link('GitSignsChangeLn' , 'GitSignsChange')
 		link('GitSignsDeleteLn' , 'GitSignsDelete')
+	end
+
+	-- lir
+	local ok, _ = pcall(require, 'lir')
+	if ok then
+		require'nvim-web-devicons'.set_icon({
+			lir_folder_icon = {
+				icon = "",
+				color = base['13'],
+				name = "LirFolderNode"
+			}
+		})
+		require'lir.smart_cursor'.init()
+		-- need to reinitialize this
+		vim.cmd[[highlight def LirTransparentCursor gui=strikethrough blend=100]]
 	end
 
 	-- neotree
