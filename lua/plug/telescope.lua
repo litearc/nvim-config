@@ -8,6 +8,7 @@ local o = {}
 o.config = function()
 	telescope.setup {
 		defaults = {
+			-- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└", },
 			vimgrep_arguments = {
 				'rg',
 				'--color=never',

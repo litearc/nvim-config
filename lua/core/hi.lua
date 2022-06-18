@@ -459,6 +459,7 @@ o.colorscheme = function(name, bg)
 	-- lir
 	local ok, _ = pcall(require, 'lir')
 	if ok then
+		link('LirFloatBorder', 'NormalFloat')
 		require'nvim-web-devicons'.set_icon({
 			lir_folder_icon = {
 				icon = "",

@@ -17,6 +17,7 @@ o.config = function()
 			['<cr>']         = actions.edit,
 			['h']            = actions.up,
 			['<left>']       = actions.up,
+			['<esc>']        = actions.quit,
 			[m.quit]         = actions.quit,
 			[m.cd]           = actions.cd,
 			[m.tog_dotfiles] = actions.toggle_show_hidden,
@@ -40,9 +41,7 @@ o.config = function()
 				local width = math.floor(vim.o.columns * 0.5)
 				local height = math.floor(vim.o.lines * 0.5)
 				return {
-					border = {
-						"┌", "─", "┐", "│", "┘", "─", "└", "│",
-					},
+					border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 					width = width,
 					height = height,
 				}
