@@ -12,6 +12,9 @@ return require('packer').startup(
 		use { 'godlygeek/tabular' }
 		use { 'tpope/vim-fugitive' }
 
+		-- odin language syntax highlighting
+		use { 'Tetralux/odin.vim' }
+
 		-- better syntax highlighting (has other uses too)
 		use {
 			'nvim-treesitter/nvim-treesitter',

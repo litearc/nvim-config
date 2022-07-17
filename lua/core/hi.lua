@@ -467,7 +467,6 @@ o.colorscheme = function(name, bg)
 				name = "LirFolderNode"
 			}
 		})
-		require'lir.smart_cursor'.init()
 		-- need to reinitialize this
 		vim.cmd[[highlight def LirTransparentCursor gui=strikethrough blend=100]]
 	end

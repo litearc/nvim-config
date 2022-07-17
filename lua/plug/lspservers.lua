@@ -49,6 +49,8 @@ o.config = function()
 			server:setup(opts)
 		end
 	)
+
+	require'lspconfig'.ols.setup{}
 end
 
 return o
